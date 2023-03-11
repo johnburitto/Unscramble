@@ -101,15 +101,6 @@ class GameFragment : Fragment() {
     }
 
     /*
-     * Gets a random word for the list of words and shuffles the letters in it.
-     */
-    private fun getNextScrambledWord(): String {
-        val tempWord = allWordsList.random().toCharArray()
-        tempWord.shuffle()
-        return String(tempWord)
-    }
-
-    /*
     * Sets and resets the text field error status.
     */
     private fun setErrorTextField(error: Boolean) {
@@ -148,6 +139,7 @@ class GameFragment : Fragment() {
     * restart the game.
     */
     private fun restartGame() {
+        viewModel.reinitializeData()
         setErrorTextField(false)
         updateNextWordOnScreen()
     }
