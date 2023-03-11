@@ -10,6 +10,8 @@ class GameViewModel : ViewModel() {
     private var wordsList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
 
+    val score : Int
+        get() = _score
     val currentScrambledWord: String
         get() = _currentScrambledWord
 
@@ -47,5 +49,19 @@ class GameViewModel : ViewModel() {
             getNextWord()
             true
         } else false
+    }
+
+    private fun increaseScore() {
+        _score += SCORE_INCREASE
+    }
+
+    fun isUserWordCorrect(playerWord : String) : Boolean {
+        if (playerWord.equals(currentWord, true)) {
+            increaseScore()
+
+            return true
+        }
+
+        return false
     }
 }
